@@ -11,7 +11,17 @@ public class Personen {
     private long AHV_Nummer;
     private String Region;
     private int Kinder;
-
+    private long id;
+    public Personen(String name, String vorname, String anrede, LocalDate geburtsdatum, Long AHV_Nummer, String region, int kinder, Long id) {
+        this.name = name;
+        Vorname = vorname;
+        Anrede = anrede;
+        Geburtsdatum = geburtsdatum;
+        this.AHV_Nummer = AHV_Nummer;
+        Region = region;
+        Kinder = kinder;
+        this.id = id;
+    }
     public Personen(String name, String vorname, String anrede, LocalDate geburtsdatum, Long AHV_Nummer, String region, int kinder) {
         this.name = name;
         Vorname = vorname;
@@ -21,7 +31,8 @@ public class Personen {
         Region = region;
         Kinder = kinder;
     }
-
+    public Long getId(){return id;}
+    public void setId(Long id){this.id = id;}
     public String getName() {
         return name;
     }
