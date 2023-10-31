@@ -1,7 +1,6 @@
 package org.example.model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Personen {
     private String name;
@@ -31,8 +30,8 @@ public class Personen {
         Region = region;
         Kinder = kinder;
     }
-    public Long getId(){return id;}
-    public void setId(Long id){this.id = id;}
+    public void setID(Long id){this.id = id;}
+    public long getID(){ return id;}
     public String getName() {
         return name;
     }
@@ -99,4 +98,5 @@ public class Personen {
                 "| Region: " + Region +
                 "| Kinder: " + Kinder;
     }
+
 }

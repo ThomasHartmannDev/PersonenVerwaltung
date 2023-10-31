@@ -142,7 +142,7 @@ public class DbController extends DbConnection{
             preparedStatement.setLong(5, personen.getAHV_Nummer());
             preparedStatement.setString(6,personen.getRegion());
             preparedStatement.setInt(7, personen.getKinder());
-            preparedStatement.setLong(8, personen.getId());
+            preparedStatement.setLong(8, personen.getID());
 
             if(preparedStatement.executeUpdate() == 1){
                 connection.commit();

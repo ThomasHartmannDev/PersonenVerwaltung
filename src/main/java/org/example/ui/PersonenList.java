@@ -1,5 +1,6 @@
 package org.example.ui;
 
+import org.example.database.DbController;
 import org.example.model.Personen;
 
 import javax.swing.*;
@@ -14,13 +15,17 @@ public class PersonenList extends JFrame {
     private JButton nextButton;
     private JButton newButton;
     private JButton editButton;
-    private List<Personen> personenList;
+    public List<Personen> personenList;
     private int currentIndex = 0;
-    private int maxIndex;
-
-    public PersonenList(List<Personen> personenList) {
-        this.personenList = personenList;
+    public int maxIndex;
+    private int oldMaxIndex;
+    public boolean edit;
+    Formular forms;
+    public PersonenList(DbController dbController) {
+        this.personenList = dbController.personenListDB();
         this.maxIndex = personenList.size();
+        this.oldMaxIndex = maxIndex;
+        this.edit = false;
         System.out.println("MaxIndex:" + maxIndex);
         setTitle("People Screen");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,12 +90,28 @@ public class PersonenList extends JFrame {
         // Action for the "New" button
         newButton.addActionListener(e -> {
             // Logic to create a new user
+           forms = new Formular(this, dbController, this);
         });
 
         // Action for the "Edit" button
         editButton.addActionListener(e -> {
             // Logic to edit the current user
+            forms = new Formular(this, dbController, personenList.get(currentIndex), this);
         });
+
+        if(oldMaxIndex != maxIndex){
+            this.dispose();
+            oldMaxIndex = maxIndex;
+            new PersonenList(dbController);
+
+        } else if(edit){
+            System.out.println("edit true");
+            System.out.println("edit true");
+            System.out.println("edit true");
+            System.out.println("edit true");
+            System.out.println("edit true");
+            System.out.println("edit true");
+        }
     }
 
     private String getPersonenDetails(int index) {
@@ -98,7 +119,7 @@ public class PersonenList extends JFrame {
             Personen person = personenList.get(index);
             return "Name: " + person.getName() + "\nVorname: " + person.getVorname() + "\nAnrede: " + person.getAnrede()
                     + "\nGeburtsdatum: " + person.getGeburtsdatum() + "\nAHV_Nummer: " + person.getAHV_Nummer()
-                    + "\nRegion: " + person.getRegion() + "\nKinder: " + person.getKinder() + "\nID: " + person.getId();
+                    + "\nRegion: " + person.getRegion() + "\nKinder: " + person.getKinder() + "\nID: " + person.getID();
         }
         return "No data";
     }
