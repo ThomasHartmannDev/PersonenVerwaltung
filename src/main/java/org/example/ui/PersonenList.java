@@ -5,6 +5,7 @@ import org.example.model.Personen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.ParseException;
 import java.util.List;
 
 public class PersonenList extends JFrame {
@@ -21,6 +22,13 @@ public class PersonenList extends JFrame {
     private int oldMaxIndex;
     public boolean edit;
     Formular forms;
+    /**
+     * PersonenList, on this constructor we create our fist Screen that will show the
+     * information from the Personen in the Database
+     * @param dbController
+     *
+     * */
+
     public PersonenList(DbController dbController) {
         this.personenList = dbController.personenListDB();
         this.maxIndex = personenList.size();
@@ -99,21 +107,19 @@ public class PersonenList extends JFrame {
             forms = new Formular(this, dbController, personenList.get(currentIndex), this);
         });
 
-        if(oldMaxIndex != maxIndex){
+        //Always when we update the list, recreate the screen.
+        if(oldMaxIndex != maxIndex) {
             this.dispose();
             oldMaxIndex = maxIndex;
             new PersonenList(dbController);
-
-        } else if(edit){
-            System.out.println("edit true");
-            System.out.println("edit true");
-            System.out.println("edit true");
-            System.out.println("edit true");
-            System.out.println("edit true");
-            System.out.println("edit true");
         }
     }
 
+    /**
+     * gerPersonenDetails, on this method we read the entire ArrayList to display the infos on the screen.
+     * @param index
+     * @return String
+     */
     private String getPersonenDetails(int index) {
         if (index >= 0 && index < personenList.size()) {
             Personen person = personenList.get(index);

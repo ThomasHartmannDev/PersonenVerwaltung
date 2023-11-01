@@ -12,6 +12,9 @@ public class DbConnection {
     protected final String password = "password";
     protected Connection connection;
 
+    /**
+     * openConnection, using JDBC, we make a connection with our database
+     */
     public void openConnection() { // Open a new connection with the DB
         try {
             Class.forName("com.mysql.cj.jdbc.Driver"); // Make sure the Dependency is installed!
@@ -25,6 +28,9 @@ public class DbConnection {
         }
     }
 
+    /**
+     * closeConnection, we close our connection with the Database.
+     */
     public void closeConnection(){ // Close the connection
         System.out.println("trying to close the connection!");
         try {

@@ -1,17 +1,20 @@
+/**
+ * @author Thomas Hartmann, Aya El Houssami, Jozsef Gönczi
+ * @version 1.0
+ * */
+
+
 package org.example;
 
 import org.example.database.DbController;
-import org.example.model.Personen;
-import org.example.ui.Formular;
 import org.example.ui.PersonenList;
 
-import java.time.LocalDate;
-import java.util.List;
 
 
 public class Main {
-    public boolean reload = false;
-
+    /**
+     * Main Start the first Window - PersonenList and Start the dbControler
+     * */
     public static void main(String[] args) {
 
         DbController dbController = new DbController();

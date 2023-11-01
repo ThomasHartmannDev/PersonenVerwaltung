@@ -11,6 +11,18 @@ public class Personen {
     private String Region;
     private int Kinder;
     private long id;
+
+
+    /**
+     * This model from Personen, we use when we are getting the infomation from the Database, we need the ID.
+     * @param name
+     * @param vorname
+     * @param anrede
+     * @param geburtsdatum
+     * @param AHV_Nummer
+     * @param region
+     * @param kinder
+     */
     public Personen(String name, String vorname, String anrede, LocalDate geburtsdatum, Long AHV_Nummer, String region, int kinder, Long id) {
         this.name = name;
         Vorname = vorname;
@@ -21,6 +33,18 @@ public class Personen {
         Kinder = kinder;
         this.id = id;
     }
+
+    /***
+     * This model from Personen, we use when we are creating a new user. we don't need to set up the ID manually.
+     * @param name
+     * @param vorname
+     * @param anrede
+     * @param geburtsdatum
+     * @param AHV_Nummer
+     * @param region
+     * @param kinder
+     * @param id
+     */
     public Personen(String name, String vorname, String anrede, LocalDate geburtsdatum, Long AHV_Nummer, String region, int kinder) {
         this.name = name;
         Vorname = vorname;
@@ -30,6 +54,10 @@ public class Personen {
         Region = region;
         Kinder = kinder;
     }
+
+    /**
+     *  Getters & Setters
+     */
     public void setID(Long id){this.id = id;}
     public long getID(){ return id;}
     public String getName() {

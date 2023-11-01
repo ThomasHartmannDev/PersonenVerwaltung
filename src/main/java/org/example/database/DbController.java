@@ -9,9 +9,16 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * This class is the controller of the Database System.
+ * */
 public class DbController extends DbConnection{
-    //Create the table if that doesn't exist!
+    /**
+     * CreateTablePersonen, if the table isn't created this method will create one,
+     * otherwise it will just close the connection with the Database
+     * @return Void
+     *
+     * */
     public void createTablePersonen(){
         // method to create the table!
         // Create the SQL String
@@ -39,7 +46,13 @@ public class DbController extends DbConnection{
         }
     }
 
-    //Add a new "Personen" to the table!
+    /**
+     * insertPersonen, this method will inset the person data into the Database.
+     * for that we use the Model Personen to inste the correct data type into it.
+     * @param personen
+     * @return void
+     */
+
     public void insertPersonen(Personen personen){
         String insertPersonen = "INSERT INTO Personen (name,vorname,anrede,geburtsdatum,AHV_nummer,region,kinder)" +
                 "VALUES (?,?,?,?,?,?,?)";
@@ -70,7 +83,11 @@ public class DbController extends DbConnection{
         }
     }
 
-    // Search the client based on the AHV_nummer
+    /**
+     * searchPersonenByAHV, in this method we can search the personen by the AHV_Nummer.
+     * @param AHV_nummer
+     * @return Personen
+     */
     public Personen searchPersonenByAHV(long AHV_nummer){
         Personen personenResult = null;
         String sqlSearch = "SELECT * FROM Personen WHERE AHV_nummer = ?";
@@ -97,8 +114,11 @@ public class DbController extends DbConnection{
         }
         return personenResult;
     }
-
-    // Search the client based on the ID
+    /**
+     * searchPersonenById, in this method we can search the personen by ID
+     * @param id
+     * @return Personen
+     */
     public Personen searchPersonenById(long id){
         Personen personenResult = null;
         String sqlSearch = "SELECT * FROM Personen WHERE ID = ?";
@@ -126,7 +146,11 @@ public class DbController extends DbConnection{
         return personenResult;
     }
 
-    // Update the information based on the ID
+    /**
+     * updatePersonenById, in this method we recieve a person by parameter and then we edit the information.
+     * @param personen
+     * @return Boolean
+     */
     public boolean updatePersonById(Personen personen){
         String sqlUpdate = "UPDATE Personen SET name = ?,vorname = ?,anrede = ?," +
                            "geburtsdatum = ?,AHV_nummer = ?,region = ?,kinder = ? WHERE id = ?";
@@ -157,6 +181,11 @@ public class DbController extends DbConnection{
         return false;
     }
 
+    /**
+     * removePersonById, we recieve an ID and remove the personen that has the same ID.
+     * @param id
+     * @return
+     */
     public boolean removePersonById(long id){
         String sqlRemove = "DELETE FROM Personen WHERE ID = ?";
         System.out.println("Trying to delete the Information!");
@@ -178,6 +207,11 @@ public class DbController extends DbConnection{
         }
         return false;
     }
+
+    /**
+     * personenListDB, in this method we take every personen in the DB and insert into an ArrayList
+     * @return List
+     */
     public List<Personen> personenListDB() {
         String sql = "SELECT * FROM Personen";
         List<Personen> personenList = new ArrayList<>();
